@@ -1,11 +1,5 @@
 #!/bin/bash
 
-# 对抗性基因数据库筛选
-# 使用软件：BLAST HMMER
-# 初始序列是 FASTA 格式
-
-######################################################################
-
 while getopts hs: opt; do
   case "$opt" in  
     h)
@@ -23,7 +17,7 @@ while getopts hs: opt; do
   esac
 done
 
-######################################################################
+##########################################################################################
 
 #echo $c,$m,$n
 #awk 'NR==1 {print; exit}' tmpout
@@ -39,11 +33,14 @@ elif [[ $sub == *NCBIFAM ]]; then
 elif [[ $sub == BGC* ]]; then
   m_key=$(echo $sub |awk -F '|' '{print $NF}')
   grep $m_key inde_mibigrg.csv |awk -F ',' '{print $4","$5}'
+elif [[ $sub == sp* ]]; then 
+  u_key=$(echo $sub |awk -F '|' '{print $2}')
+  grep $u_key index_uniprotrg.csv |awk -F ',' '{print $2","$3}' 
 elif [ ! $sub ]; then echo "NO RESULT"
 fi
 
 echo
 
-rm tmpout;rm blast_cardresis_out;rm blast_mibigresis_out;rm hmmscout.tbl
+rm tmpout;rm blast_cardresis_out;rm blast_mibigresis_out;rm hmmscout.tbl;rm blast_uniprotresis_out
 
 
