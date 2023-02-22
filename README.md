@@ -8,7 +8,7 @@ This scripts (annmech.sh) is based on BLAST and HMMER, written in Bash. It can s
 
 Place yourself at the current directory. Only one sequence can be processed at a time.
 
-$ annmech.sh -s <Your sequence> 
+$ annmech.sh -s sequence.fasta
 
 ## 2.Read your results
 
